@@ -29,8 +29,8 @@ const livepeerClient = createReactClient({
 function PlayerComponent() {
   return (
     <Player
-      title="Agent 327: Operation Barbershop"
-      playbackId="6d7el73r1y12chxr"
+      title="1v5 Valorant duoing with Ploo"
+      playbackId="7115fo57acfml1ab"
       showPipButton
       objectFit="cover"
       priority
@@ -103,6 +103,7 @@ const StreamWindow = styled.div`
 
   background: #171717;
   border-radius: 30px;
+  
 `
 
 const Discription = styled.div`
