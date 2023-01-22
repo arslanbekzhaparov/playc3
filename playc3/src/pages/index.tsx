@@ -3,6 +3,9 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import styled, { keyframes, css, createGlobalStyle, ThemeProvider, DefaultTheme } from "styled-components";
+import React from 'react';
+
+
 
 import CardBuy from '@images/Card_Buy.svg'
 import Logo from '@images/Logo.svg'
@@ -12,6 +15,28 @@ import Ploo from '@images/Ploo.svg'
 import ChatImg from '@images/Chat.svg'
 import Views from '@images/ViewCount.svg'
 
+import {
+  LivepeerConfig,
+  createReactClient,
+  Player,
+  studioProvider,
+} from '@livepeer/react';
+
+const livepeerClient = createReactClient({
+  provider: studioProvider({ apiKey: '594fa6a7-bf96-459f-8adb-92232cc4c5eb' }),
+});
+
+function PlayerComponent() {
+  return (
+    <Player
+      title="1v5 Valorant duoing with Ploo"
+      playbackId="7115fo57acfml1ab"
+      showPipButton
+      objectFit="cover"
+      priority
+    />
+  );
+};
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -78,6 +103,7 @@ const StreamWindow = styled.div`
 
   background: #171717;
   border-radius: 30px;
+  
 `
 
 const Discription = styled.div`
@@ -124,6 +150,7 @@ const Background = styled.div`
 `
 export default function Home() {
   return (
+    <LivepeerConfig client={livepeerClient}>
     <>
       <Head>
         <title>Playc3</title>
@@ -161,7 +188,7 @@ export default function Home() {
           />  
         </CardMoney>
         <StreamWindow>
-          
+          <PlayerComponent />
         </StreamWindow>
         <Discription>
         <Image
@@ -183,5 +210,6 @@ export default function Home() {
         </Chat>
       </Background>
     </>
+    </LivepeerConfig>
   )
 }
